@@ -7441,7 +7441,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Prompt-Engineering-&amp;-Frameworks"><strong>Prompt Engineering &amp; Frameworks</strong><a class="anchor-link" href="#Prompt-Engineering-&amp;-Frameworks">¶</a></h1><p>Welcome to this presentation on <strong>Prompt Engineering</strong> and how different <strong>Prompt Frameworks</strong> can help you get the best results from AI models. We’ll also see how to incorporate Google’s <strong>Gemini</strong> for both <strong>developer</strong> and <strong>everyday</strong> tasks.</p>
+<h1 id="Prompt-Engineering-&amp;-Frameworks"><strong>Prompt Engineering &amp; Frameworks</strong><a class="anchor-link" href="#Prompt-Engineering-&amp;-Frameworks">¶</a></h1><p>Welcome to this presentation on <strong>Prompt Engineering</strong> and how different <strong>Prompt Frameworks</strong> can help you get the best results from AI models. We’ll also see how to incorporate Google’s <strong>Gemini</strong> for <strong>developer</strong>, <strong>project planning</strong>, and <strong>everyday</strong> tasks.</p>
 </div>
 </div>
 </div>
@@ -7456,8 +7456,51 @@ main {
 <h3 id="Why-Use-Prompt-Frameworks?"><strong>Why Use Prompt Frameworks?</strong><a class="anchor-link" href="#Why-Use-Prompt-Frameworks?">¶</a></h3><ul>
 <li>They provide <strong>clarity</strong>—ensuring you specify crucial information up front.</li>
 <li>They keep prompts <strong>consistent</strong>—useful for repeated tasks or multiple requests.</li>
-<li>They reduce <strong>ambiguity</strong>—leading to fewer misinterpretations and better AI outputs.</li>
+<li>They reduce <strong>ambiguity</strong>—leading to fewer misinterpretations, fewer hallucinations, and better AI outputs.</li>
+<li>They can contribute to saving money on tokens, which may reduce both costs and valuable time.</li>
 </ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10283e6c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Top-Free-AI-Services"><strong>Top Free AI Services</strong><a class="anchor-link" href="#Top-Free-AI-Services">¶</a></h2><table>
+<thead>
+<tr>
+<th><strong>AI Service</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Token Limitations</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ChatGPT (Free)</strong></td>
+<td>Versatile conversational AI by OpenAI, suitable for a wide range of tasks</td>
+<td>GPT-3.5 free tier supports ~4,000 tokens per session; subject to usage limits</td>
+</tr>
+<tr>
+<td><strong>Microsoft Copilot</strong></td>
+<td>All-in-one AI assistant integrated with Microsoft apps and services</td>
+<td>Typically handles around 2,048 tokens per request</td>
+</tr>
+<tr>
+<td><strong>Anthropic’s Claude</strong></td>
+<td>Privacy-focused AI capable of handling sensitive queries with minimal data retention</td>
+<td>Averages about 1,000 tokens per prompt on the free tier</td>
+</tr>
+<tr>
+<td><strong>Gemini 1.5 Pro</strong></td>
+<td>Privacy-focused AI capable of handling sensitive queries with minimal data retention</td>
+<td>Averages about 32,000 tokens per minute on the free tier</td>
+</tr>
+</tbody>
+</table>
+<p>Using the right prompt framework can help you conserve these precious tokens by crafting more efficient and effective prompts. This ensures you get the most out of your AI interactions, saving both costs and time for when you need them most.</p>
 </div>
 </div>
 </div>
@@ -7482,87 +7525,77 @@ main {
 </thead>
 <tbody>
 <tr>
-<td><strong>CRISP (CRISP)</strong></td>
-<td>- Clear breakdown of context/steps<br/>- Purpose-driven approach</td>
-<td>- Can be too detailed for quick tasks<br/>- Requires clarity in each step</td>
-<td><strong>Yes</strong> (Great for detailing tech context, steps)</td>
+<td><strong>TCREI (Google recommends)</strong></td>
+<td>- <strong>Structured iterative approach</strong> <br/>- Emphasis on evaluation &amp; improvement <br/>- <strong>Reference-based</strong> (e.g., code snippets, style guides)</td>
+<td>- Requires <strong>high-quality references</strong> <br/>- Time-consuming for simple tasks <br/>- Can limit AI creativity if overly example-driven</td>
+<td><strong>Yes</strong> (Complex dev projects, or tasks with strict style/format)</td>
+<td><strong>Yes</strong> (Any scenario where references—like writing samples or style guides—improve AI output)</td>
+<td><strong>Task</strong>: “Create a REST API endpoint.”<br/><strong>Context</strong>: “E-commerce system, ensure scalability/security.”<br/><strong>Reference</strong>: “Here’s our current API structure.”<br/><strong>Evaluate</strong>: “Check best REST API design practices.”<br/><strong>Iterate</strong>: “Refine based on feedback, add pagination if needed.”</td>
+</tr>
+<tr>
+<td><strong>CRISP</strong></td>
+<td>- Clear breakdown of <strong>Context, Role, Input, Steps, Purpose</strong> <br/>- Purpose-driven approach</td>
+<td>- Can be <strong>too detailed</strong> for quick tasks <br/>- Requires clarity in each step</td>
+<td><strong>Yes</strong> (Great for detailing tech tasks, debugging, or multi-step processes)</td>
 <td>Possibly (Might be overkill for casual tasks)</td>
-<td>“You are a backend engineer. Given the system architecture (Context), fix the login bug. Outline steps to debug and provide a summary (Steps &amp; Purpose).”</td>
+<td>(<strong>Role</strong>) “You are a backend engineer. Given the system architecture (<strong>Context</strong>), fix the login bug. Outline steps to debug and provide a summary (<strong>Steps &amp; Purpose</strong>).”</td>
 </tr>
 <tr>
-<td><strong>RACI (RACI)</strong></td>
-<td>- Focus on role, audience, channel<br/>- Good for organizing communication tasks</td>
-<td>- Lacks explicit step-by-step logic<br/>- Less emphasis on purpose or outcomes</td>
-<td>Maybe (If devs need to consider different stakeholders)</td>
-<td><strong>Yes</strong> (Ideal for clarifying who’s the target audience, how to respond)</td>
-<td>“You are a historian (Role). The audience is a beginner (Audience). Present in a short paragraph (Channel). I want a high-level overview for a meeting (Intent).”</td>
+<td><strong>SCQA</strong></td>
+<td>- <strong>Narrative</strong> structure (<em>Situation → Complication → Question → Answer</em>) <br/>- Great for stories &amp; problem-solving</td>
+<td>- Less explicit about <strong>format</strong> or role <br/>- Not always ideal for highly technical tasks</td>
+<td>Maybe (Good for explaining complex scenarios in a story format)</td>
+<td><strong>Yes</strong> (Useful for everyday problems where a narrative helps clarify issues)</td>
+<td>“Our current payroll system is outdated (<strong>Situation</strong>). We’re missing deadlines (<strong>Complication</strong>). How to reduce errors? (<strong>Question</strong>). Provide a recommended upgrade plan (<strong>Answer</strong>).”</td>
 </tr>
 <tr>
-<td><strong>SCQA (SCQA)</strong></td>
-<td>- Story-like structure (Situation → Complication → Question → Answer)<br/>- Great for problem-solving/narratives</td>
-<td>- Less explicit about format or role<br/>- Not always ideal for highly technical tasks</td>
-<td>Maybe (Explaining a complex bug/scenario)</td>
-<td><strong>Yes</strong> (Useful for framing everyday problems)</td>
-<td>“Our current payroll system is outdated (Situation). We’re missing deadlines (Complication). How to reduce errors? (Question). Provide a recommended upgrade plan (Answer).”</td>
-</tr>
-<tr>
-<td><strong>PACER (PACER)</strong></td>
-<td>- Encourages iterative refinement<br/>- Built-in evaluation/check step</td>
-<td>- Longer prompt structure<br/>- Might be too involved for quick tasks</td>
-<td><strong>Yes</strong> (Step-by-step clarity, especially for coding)</td>
-<td>Possibly (If you want an iterative process for personal tasks)</td>
-<td>“Plan how to organize the code repository (Plan). Implement the refactoring (Act). Explain your approach (Clarify). Check for performance issues (Evaluate). Suggest improvements (Refine).”</td>
-</tr>
-<tr>
-<td><strong>PEEL (PEEL)</strong></td>
-<td>- Simple yet captures context &amp; examples<br/>- Good for specifying format</td>
-<td>- Limited persona/role specification<br/>- Lacks explicit audience segment</td>
-<td>Maybe (If dev tasks require examples/clarifications)</td>
-<td><strong>Yes</strong> (Everyday tasks often benefit from examples)</td>
-<td>“Prompt: ‘Draft a short thank-you note.’ Explanation: ‘It’s for a client meeting recap.’ Example: ‘Here’s the style I use.’ Link: ‘Ensure it stays professional.’”</td>
+<td><strong>RTF</strong></td>
+<td>- Very <strong>straightforward</strong> (<em>Role, Task, Format</em>) <br/>- Quick and simple</td>
+<td>- Minimal context <br/>- Might need extra detail for more complex tasks</td>
+<td><strong>Yes</strong> (Quick dev tasks or minor bug fixes)</td>
+<td><strong>Yes</strong> (Perfect for short emails, texts, or everyday prompts)</td>
+<td>“<strong>Role</strong>: ‘You’re a personal assistant.’ <strong>Task</strong>: ‘Draft an email apologizing for a delay.’ <strong>Format</strong>: ‘Short paragraph.’”</td>
 </tr>
 <tr>
 <td><strong>Chain-of-Thought (COT)</strong></td>
-<td>- Encourages explicit reasoning<br/>- Clarifies complex processes</td>
-<td>- Can get verbose if you show every reasoning step<br/>- May slow response time</td>
-<td><strong>Yes</strong> (Excellent for debugging/problem-solving)</td>
-<td>Possibly (If you want step-by-step reasoning)</td>
+<td>- Encourages <strong>explicit reasoning</strong> <br/>- Clarifies <strong>complex processes</strong></td>
+<td>- Can get <strong>verbose</strong> if you show every reasoning step <br/>- May <strong>slow response time</strong></td>
+<td><strong>Yes</strong> (Excellent for <strong>debugging</strong> or in-depth problem-solving)</td>
+<td>Possibly (If you <strong>want step-by-step</strong> reasoning for everyday tasks)</td>
 <td>“Explain how you arrived at each conclusion for optimizing this code, step by step. Then provide the final solution.”</td>
 </tr>
 <tr>
-<td><strong>HARPA (HARPA)</strong></td>
-<td>- Hooks attention effectively<br/>- Built-in feedback loop</td>
-<td>- Less emphasis on role/context<br/>- Broad structure might need more detail for dev tasks</td>
-<td>Maybe (Short, structured approach for dev questions)</td>
-<td><strong>Yes</strong> (Natural flow for everyday/persuasive requests)</td>
-<td>“Hook: ‘Feeling stuck with your resume?’ Ask: ‘Please help me improve it.’ Respond: (AI suggestions). Provide: ‘Here’s my feedback on your suggestions.’ Answer: ‘Refine final draft.’”</td>
-</tr>
-<tr>
-<td><strong>RTF (RTF)</strong></td>
-<td>- Very straightforward (Role, Task, Format)<br/>- Quick to implement</td>
-<td>- Minimal context<br/>- May need extra instructions for complex tasks</td>
-<td><strong>Yes</strong> (Quick dev tasks, like small bug fixes)</td>
-<td><strong>Yes</strong> (Perfect for short emails, texts, or quick tasks)</td>
-<td>“Role: ‘You’re a personal assistant.’ Task: ‘Draft an email apologizing for a delay.’ Format: ‘Short paragraph.’”</td>
-</tr>
-<tr>
-<td><strong>CTF (CTF)</strong></td>
-<td>- Emphasizes context and task<br/>- Easy to adapt</td>
-<td>- Doesn’t specify role/audience<br/>- Might need extra instructions for tone/style</td>
-<td><strong>Yes</strong> (Great for code context &amp; clarifying the task)</td>
-<td><strong>Yes</strong> (Useful to ensure clarity in everyday requests)</td>
-<td>“Context: ‘We’re planning a party with a tight budget.’ Task: ‘Suggest three cost-saving ideas.’ Format: ‘Bullet points.’”</td>
-</tr>
-<tr>
-<td><strong>RASCEF (RASCEF)</strong></td>
-<td>- Comprehensive (Role, Audience, Style, Context, Examples, Format)<br/>- Great for targeted communication</td>
-<td>- Can be lengthy<br/>- Might over-specify and limit creativity</td>
-<td>Maybe (If dev comms need multiple perspectives)</td>
+<td><strong>RASCEF</strong></td>
+<td>- <strong>Comprehensive</strong>: Role, Audience, Style, Context, Examples, Format <br/>- Great for formal or multi-stakeholder tasks</td>
+<td>- Can be <strong>lengthy</strong> <br/>- Might over-specify or limit creative freedom</td>
+<td>Maybe (Dev communications needing multiple perspectives, e.g., user vs. dev audience)</td>
 <td><strong>Yes</strong> (Ideal for formal or varied social/business situations)</td>
-<td>“Role: ‘You’re a career counselor.’ Audience: ‘Recent grads.’ Style: ‘Friendly yet professional.’ Context: ‘Tips for a job fair.’ Examples: ‘Show a sample intro speech.’ Format: ‘Numbered list.’”</td>
+<td>“<strong>Role</strong>: ‘You’re a career counselor.’ <strong>Audience</strong>: ‘Recent grads.’ <strong>Style</strong>: ‘Friendly yet professional.’ <strong>Context</strong>: ‘Tips for a job fair.’ <strong>Examples</strong>: ‘Here’s a sample intro speech.’ <strong>Format</strong>: ‘Numbered list.’”</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2dc0d5a9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Best-Practices-for-Optimal-Usage"><strong>Best Practices for Optimal Usage</strong><a class="anchor-link" href="#Best-Practices-for-Optimal-Usage">¶</a></h2><p><strong>Actionable Tips for Effective Usage</strong></p>
+<ul>
+<li><strong>Focus on Complex Tasks</strong>: Rely on the model for large-scale, intricate projects rather than simple or routine queries.</li>
+<li><strong>Integrate Roles</strong>: For tasks like coding, combine multiple roles (e.g., architect and engineer) to streamline workflows and boost efficiency.</li>
+<li><strong>Provide Comprehensive Context</strong>: Supply detailed instructions upfront to minimize clarification needs and ensure accurate results.</li>
+</ul>
+<p><strong>Additional Strategies</strong></p>
+<ul>
+<li><strong>Master Prompt Engineering</strong>: Invest time in learning how to structure inputs effectively, ensuring the model delivers accurate and actionable outputs.</li>
+<li><strong>Set Realistic Expectations</strong>: Remember that complex tasks may take longer to process, so plan accordingly to avoid unnecessary delays.</li>
+<li><strong>Use It Collaboratively</strong>: Recognize that the model is designed to augment human expertise rather than replace it—think of it as a partner in problem-solving.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -7573,9 +7606,10 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Using-Gemini"><strong>Using Gemini</strong><a class="anchor-link" href="#Using-Gemini">¶</a></h2><p>We’ll demonstrate how to import Gemini (as per <a href="https://github.com/google-gemini/cookbook">Google’s Gemini Cookbook</a>) and use these frameworks for two scenarios:</p>
+<h2 id="Using-Gemini"><strong>Using Gemini</strong><a class="anchor-link" href="#Using-Gemini">¶</a></h2><p>We’ll demonstrate how to import Gemini (as per <a href="https://github.com/google-gemini/cookbook">Google’s Gemini Cookbook</a>) and use these frameworks for three scenarios:</p>
 <ol>
 <li>A <strong>developer</strong> scenario (using <strong>CRISP</strong>)</li>
+<li>A <strong>project planning</strong> scenario (using <strong>TCREI</strong>)</li>
 <li>An <strong>everyday</strong> scenario (using <strong>RTF</strong>)</li>
 </ol>
 <p>Feel free to adapt these examples to any other framework.</p>
@@ -7587,7 +7621,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example code to import Gemini</span>
@@ -7634,12 +7668,12 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">crisp_prompt_dev</span> <span class="o">=</span> <span class="s1">'''</span>
-<span class="s1">Context: We have a Node.js app returning 500 errors on all endpoints.</span>
 <span class="s1">Role: You are a senior backend engineer.</span>
+<span class="s1">Context: We have a Node.js app returning 500 errors on all endpoints.</span>
 <span class="s1">Input: Here is the middleware code:</span>
 <span class="s1">```</span>
 <span class="s1">app.use((req, res, next) =&gt; {</span>
@@ -7657,18 +7691,19 @@ main {
 
 <span class="n">framework_prompt</span> <span class="o">=</span> <span class="s2">"### **CRISP Prompt for Developer**:</span><span class="se">\n</span><span class="s2">---</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">crisp_prompt_dev</span>
 
+<span class="c1"># Optional: Display the prompt in a Markdown format</span>
 <span class="c1"># display(Markdown(framework_prompt))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dd05a9fb">
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dd05a9fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Call to Gemini:</span>
@@ -7688,23 +7723,139 @@ main {
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
 <h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><p>Debugging Steps:</p>
 <ol>
-<li><strong>Check logs:</strong> Examine Node.js application logs for errors occurring <em>after</em> the middleware.  500 errors originate after the middleware completes execution.</li>
-<li><strong>Simplify:</strong> Temporarily comment out all routes and middleware <em>after</em> the provided snippet to isolate the problem. If 500 errors persist, the issue lies within the middleware itself (unlikely given the code). Otherwise, the problem is in subsequent code.</li>
-<li><strong>Test:</strong> Make requests <em>with</em> and <em>without</em> the <code>x-api-key</code> header to confirm expected 401 and successful responses (if subsequent code works).</li>
+<li><strong>Check logs:</strong> Examine Node.js application logs for errors occurring <em>after</em> the middleware.  A 500 error after a 401 check implies an unhandled exception downstream.</li>
+<li><strong>Simplify:</strong> Temporarily comment out all routes and middleware <em>after</em> the API key check. If the 500 error disappears, the problem lies in the subsequently defined routes or middleware.  If it persists, the issue is within the middleware itself (though unlikely given the simple code).</li>
+<li><strong>Test with valid key:</strong> Verify the middleware functions correctly with a valid <code>x-api-key</code>. A 500 error even with a valid key points to a deeper problem in the application's core logic.</li>
 </ol>
-<p>Code Fix (if problem isn't in subsequent code):  The provided middleware is correctly handling the missing API key.  The 500 errors are elsewhere.  No code changes are needed to this snippet <em>unless</em> step 2 reveals a problem <em>within</em> this middleware (highly unlikely given the simple nature of the code).  The solution will involve debugging the routes and other middleware that follow this one.</p>
-<p>If logs show errors <em>after</em> this middleware, focus debugging efforts there.  Example: wrap subsequent code in <code>try...catch</code> blocks to gracefully handle exceptions and return appropriate error responses (4xx or 5xx as needed).  Example of adding <code>try...catch</code> to a route handler:</p>
-<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/myroute'</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<p>Proposed Code Fixes (assuming the problem is <em>after</em> the middleware):</p>
+<p><strong>Option 1 (If unhandled exceptions exist in routes):</strong>  Implement a global error handler:</p>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span><span class="w"> </span><span class="c1">// Log the error for debugging</span>
+<span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<p>Place this <em>after</em> all your routes.  This will catch and handle any unhandled exceptions, preventing 500 errors from propagating to the client.  The logged stack trace will pinpoint the source of the problem.</p>
+<p><strong>Option 2 (If the problem lies in a specific route):</strong> Add error handling to individual routes:</p>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/someRoute'</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Your route logic here</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">someAsyncOperation</span><span class="p">();</span>
-<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Error in /myroute:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//Log the specific error for debugging</span>
-<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">//Or more specific error if possible</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
+<p>This isolates the error handling to specific routes, making debugging easier.</p>
+<p><strong>Option 3 (If the problem <em>is</em> in the middleware - unlikely but possible):</strong>  Ensure <code>res.status(401).json(...)</code> is actually sent.  While unlikely with the provided snippet, a subtle error within this statement could cause issues.  (Though a 500 error is improbable given its simplicity).</p>
+<p>The key is to isolate the source of the error by gradually removing potential points of failure.  The global error handler (Option 1) is the most effective initial step to get a handle on the actual problem.</p>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a223afe7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.-Project-Planning-Scenario-with-TCREI"><strong>2. Project Planning Scenario with TCREI</strong><a class="anchor-link" href="#2.-Project-Planning-Scenario-with-TCREI">¶</a></h3><p>Suppose you are planning a new feature for a mobile app and need to outline the development plan.</p>
+<h4 id="TCREI-Breakdown"><strong>TCREI Breakdown</strong><a class="anchor-link" href="#TCREI-Breakdown">¶</a></h4><ul>
+<li><strong>Task</strong>: Create a development plan for the new feature.</li>
+<li><strong>Context</strong>: The feature is a user profile page with social media integration.</li>
+<li><strong>Reference</strong>: Consider the current app's design guidelines.</li>
+<li><strong>Evaluation</strong>: Ensure the plan aligns with best practices for UX/UI.</li>
+<li><strong>Iterate</strong>: Refine the plan based on feedback.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98edebe0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tcrei_prompt_project_planning</span> <span class="o">=</span> <span class="s1">'''</span>
+<span class="s1">Task: Create a concise development plan for a new feature.</span>
+
+<span class="s1">Context: We are adding a user profile page to our mobile app, including social media integration (e.g., Facebook, Twitter).</span>
+
+<span class="s1">Reference: Here are our current app's design guidelines and style guides.</span>
+
+<span class="s1">Evaluation: Ensure that the plan follows best practices for mobile UX/UI and security.</span>
+
+<span class="s1">Iterate: Be prepared to refine the plan based on stakeholder feedback.</span>
+<span class="s1">'''</span>
+
+<span class="c1"># Initialize the Gemini model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">GenerativeModel</span><span class="p">(</span><span class="s1">'gemini-1.5-flash'</span><span class="p">)</span>
+
+<span class="c1"># Optional: Display the prompt in a Markdown format</span>
+<span class="c1"># display(Markdown("### **TCREI Prompt for Project Planning**:\\n---\\n" + tcrei_prompt))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f4c50ea3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Call to Gemini:</span>
+<span class="n">response_tcrei</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span><span class="n">tcrei_prompt_project_planning</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">### *Gemini Response*:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">response_tcrei</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
+<h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><h2 id="User-Profile-Page-Development-Plan">User Profile Page Development Plan<a class="anchor-link" href="#User-Profile-Page-Development-Plan">¶</a></h2><p><strong>Goal:</strong> Implement a user profile page with social media integration.</p>
+<p><strong>Phase 1: Design &amp; Planning (1 week)</strong></p>
+<ul>
+<li><strong>Wireframing &amp; Mockups:</strong>  Create low-fidelity wireframes and high-fidelity mockups of the profile page, adhering to existing design guidelines.  Focus on intuitive navigation and clear visual hierarchy.  Include considerations for different screen sizes.</li>
+<li><strong>User Story Mapping:</strong> Define core user stories (e.g., "As a user, I can update my profile picture," "As a user, I can connect my Twitter account"). Prioritize stories based on value and complexity.</li>
+<li><strong>API Integration Plan:</strong> Outline the process for integrating with chosen social media platforms (Facebook, Twitter), specifying authentication methods (OAuth 2.0 preferred) and data handling.  Address data privacy concerns and compliance with relevant regulations (GDPR, CCPA).</li>
+<li><strong>Security Review:</strong>  Conduct a preliminary security review of the planned integration, focusing on data encryption and protection against vulnerabilities (OWASP Top 10).</li>
+</ul>
+<p><strong>Phase 2: Development (2 weeks)</strong></p>
+<ul>
+<li><strong>Backend Development:</strong> Implement API endpoints for profile data management and social media integration.  Focus on robust error handling and data validation.</li>
+<li><strong>Frontend Development:</strong> Develop the UI based on approved mockups, ensuring responsiveness across devices. Implement secure authentication and data handling.</li>
+<li><strong>Testing (Unit &amp; Integration):</strong> Conduct thorough unit and integration testing of all functionalities.</li>
+</ul>
+<p><strong>Phase 3: Testing &amp; Refinement (1 week)</strong></p>
+<ul>
+<li><strong>User Acceptance Testing (UAT):</strong> Conduct UAT with a representative sample of users to gather feedback on usability and identify any bugs.</li>
+<li><strong>Iteration &amp; Refinement:</strong> Based on UAT feedback, iterate on the design and functionality. Address any identified bugs and usability issues.</li>
+<li><strong>Performance Testing:</strong> Evaluate app performance with the new feature integrated.</li>
+</ul>
+<p><strong>Phase 4: Deployment &amp; Monitoring (1 week)</strong></p>
+<ul>
+<li><strong>Deployment:</strong> Deploy the updated app to the app stores.</li>
+<li><strong>Monitoring:</strong> Monitor app performance and user feedback post-launch to identify and address any unforeseen issues.</li>
+</ul>
+<p><strong>Success Criteria:</strong></p>
+<ul>
+<li>User profile page meets design specifications and is user-friendly.</li>
+<li>Social media integration is secure and reliable.</li>
+<li>App performance remains stable after deployment.</li>
+<li>Positive user feedback is received.</li>
+</ul>
+<p><strong>Iteration:</strong>  This plan will be reviewed and adjusted based on stakeholder feedback after each phase.  A key focus will be placed on balancing feature completeness with timely delivery.</p>
 </div>
 </div>
 </div>
@@ -7718,7 +7869,7 @@ main {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="2.-Everyday-Scenario-with-RTF"><strong>2. Everyday Scenario with RTF</strong><a class="anchor-link" href="#2.-Everyday-Scenario-with-RTF">¶</a></h3><p>You need to write a quick apology email for a delayed meeting.</p>
 <h4 id="RTF-Breakdown"><strong>RTF Breakdown</strong><a class="anchor-link" href="#RTF-Breakdown">¶</a></h4><ul>
-<li><strong>Role</strong>: A polite personal assistant</li>
+<li><strong>Role</strong>: A commnity organizer</li>
 <li><strong>Task</strong>: Draft an email apologizing for a delay</li>
 <li><strong>Format</strong>: A short, formal paragraph</li>
 </ul>
@@ -7730,11 +7881,11 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rtf_prompt_everyday</span> <span class="o">=</span> <span class="s1">'''</span>
-<span class="s1">Role: You are a polite personal assistant.</span>
+<span class="s1">Role: You are Javi a community organizer.</span>
 <span class="s1">Task: Draft an email apologizing for the delay in scheduling a meeting.</span>
 <span class="s1">Format: A short, formal paragraph and subject line.</span>
 <span class="s1">'''</span>
@@ -7757,8 +7908,11 @@ main {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
 <h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><p>Subject: Apology for Delay in Scheduling Our Meeting</p>
-<p>Dear [Recipient Name],</p>
-<p>Please accept my sincerest apologies for the delay in scheduling our meeting.  I have been experiencing an unexpectedly high volume of requests recently, which has unfortunately impacted my ability to respond promptly. I am now available to meet on [Suggest a few dates/times]. Please let me know which option works best for you.  Thank you for your understanding.</p>
+<p>Dear Neighbors,</p>
+<p>Please accept my sincerest apologies for the delay in scheduling our upcoming community meeting.  Unforeseen circumstances have impacted my availability, but I am now working diligently to finalize a date and time that works for the majority. I will be sending out a confirmation email with the meeting details by [Date]. Thank you for your understanding and patience.</p>
+<p>Sincerely,</p>
+<p>Javi
+Community Organizer</p>
 </div>
 </div>
 </div>
@@ -7787,8 +7941,9 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Next-Steps"><strong>Next Steps</strong><a class="anchor-link" href="#Next-Steps">¶</a></h2><ul>
-<li>Explore more frameworks: <strong>PACER, PEEL, CTF, RASCEF</strong>, etc.</li>
+<li>Explore more frameworks: <strong>SCQA, COT, RASCEF</strong>, etc.</li>
 <li>Check out the <a href="https://github.com/google-gemini/cookbook">Gemini Cookbook</a> for more examples.</li>
+<li>Watch the <a href="https://www.youtube.com/watch?v=OQaTkeAj8UU">Google Prompting Essentials Course 1-4</a> to learn how to craft clear, effective instructions for generative AI tools.</li>
 <li>Experiment and refine prompts to see how responses change.</li>
 </ul>
 <p>Thank you for joining this quick tour of prompt engineering and frameworks!</p>
@@ -7800,7 +7955,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"# **Thank you and Happy Prompting!**"</span><span class="p">))</span>
@@ -7847,8 +8002,8 @@ require(
             transition: "slide",
             slideNumber: "",
             plugins: [RevealNotes],
-            width: 960,
-			      height: 700,
+            width: "100%",
+			      height: "100%",
 
         });
 

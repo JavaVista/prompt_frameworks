@@ -7621,7 +7621,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example code to import Gemini</span>
@@ -7668,12 +7668,12 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">crisp_prompt_dev</span> <span class="o">=</span> <span class="s1">'''</span>
-<span class="s1">Role: You are a senior backend engineer.</span>
 <span class="s1">Context: We have a Node.js app returning 500 errors on all endpoints.</span>
+<span class="s1">Role: You are a senior backend engineer.</span>
 <span class="s1">Input: Here is the middleware code:</span>
 <span class="s1">```</span>
 <span class="s1">app.use((req, res, next) =&gt; {</span>
@@ -7691,7 +7691,6 @@ main {
 
 <span class="n">framework_prompt</span> <span class="o">=</span> <span class="s2">"### **CRISP Prompt for Developer**:</span><span class="se">\n</span><span class="s2">---</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">crisp_prompt_dev</span>
 
-<span class="c1"># Optional: Display the prompt in a Markdown format</span>
 <span class="c1"># display(Markdown(framework_prompt))</span>
 </pre></div>
 </div>
@@ -7703,7 +7702,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Call to Gemini:</span>
@@ -7723,31 +7722,33 @@ main {
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
 <h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><p>Debugging Steps:</p>
 <ol>
-<li><strong>Check logs:</strong> Examine Node.js application logs for errors occurring <em>after</em> the middleware.  A 500 error after a 401 check implies an unhandled exception downstream.</li>
-<li><strong>Simplify:</strong> Temporarily comment out all routes and middleware <em>after</em> the API key check. If the 500 error disappears, the problem lies in the subsequently defined routes or middleware.  If it persists, the issue is within the middleware itself (though unlikely given the simple code).</li>
-<li><strong>Test with valid key:</strong> Verify the middleware functions correctly with a valid <code>x-api-key</code>. A 500 error even with a valid key points to a deeper problem in the application's core logic.</li>
+<li><strong>Check logs:</strong> Examine Node.js logs for errors occurring <em>after</em> the middleware.  The 500 errors are likely originating in route handlers or other middleware, not in this code snippet.</li>
+<li><strong>Disable middleware (temporarily):</strong> Comment out the middleware to see if the 500 errors disappear. If they do, the problem lies <em>within</em> the middleware or subsequently executed code.  If not, the issue is elsewhere.</li>
+<li><strong>Inspect route handlers:</strong> If the problem persists after disabling, thoroughly examine all route handlers (<code>app.get</code>, <code>app.post</code>, etc.) for uncaught exceptions or errors.</li>
 </ol>
-<p>Proposed Code Fixes (assuming the problem is <em>after</em> the middleware):</p>
-<p><strong>Option 1 (If unhandled exceptions exist in routes):</strong>  Implement a global error handler:</p>
-<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span><span class="w"> </span><span class="c1">// Log the error for debugging</span>
-<span class="w">  </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-<p>Place this <em>after</em> all your routes.  This will catch and handle any unhandled exceptions, preventing 500 errors from propagating to the client.  The logged stack trace will pinpoint the source of the problem.</p>
-<p><strong>Option 2 (If the problem lies in a specific route):</strong> Add error handling to individual routes:</p>
-<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/someRoute'</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<p>Code Fix (if problem is in route handlers):</p>
+<p>Ensure all route handlers are wrapped in <code>try...catch</code> blocks to handle potential errors gracefully, and return appropriate error responses (e.g., 500 with details for internal errors, 400 for bad requests):</p>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/route'</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Your route logic here</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Error in /route handler:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span><span class="w"> </span><span class="c1">// Log the error for debugging</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Internal Server Error'</span><span class="w"> </span><span class="p">});</span><span class="w"> </span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
-<p>This isolates the error handling to specific routes, making debugging easier.</p>
-<p><strong>Option 3 (If the problem <em>is</em> in the middleware - unlikely but possible):</strong>  Ensure <code>res.status(401).json(...)</code> is actually sent.  While unlikely with the provided snippet, a subtle error within this statement could cause issues.  (Though a 500 error is improbable given its simplicity).</p>
-<p>The key is to isolate the source of the error by gradually removing potential points of failure.  The global error handler (Option 1) is the most effective initial step to get a handle on the actual problem.</p>
+<p>Code Fix (if the problem is in the existing middleware and 401 isn't showing):</p>
+<p>The provided middleware <em>itself</em> is unlikely to cause a 500. The 401 is correctly implemented. The issue is elsewhere, as stated above.  If 401 is not being shown it could be due to a subsequent middleware error that overrides it.</p>
+<p>Improved Middleware (for clarity, but unlikely to fix the 500 issue):</p>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">'x-api-key'</span><span class="p">];</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">apiKey</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">'Unauthorized'</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">//return stops further execution</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">req</span><span class="p">.</span><span class="nx">apiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">apiKey</span><span class="p">;</span><span class="w"> </span><span class="c1">//Optional: make apiKey available to subsequent middleware</span>
+<span class="w">  </span><span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -7775,7 +7776,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">tcrei_prompt_project_planning</span> <span class="o">=</span> <span class="s1">'''</span>
@@ -7805,7 +7806,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Call to Gemini:</span>
@@ -7823,39 +7824,40 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
-<h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><h2 id="User-Profile-Page-Development-Plan">User Profile Page Development Plan<a class="anchor-link" href="#User-Profile-Page-Development-Plan">¶</a></h2><p><strong>Goal:</strong> Implement a user profile page with social media integration.</p>
-<p><strong>Phase 1: Design &amp; Planning (1 week)</strong></p>
+<h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><h2 id="Development-Plan:-User-Profile-Page-with-Social-Media-Integration">Development Plan: User Profile Page with Social Media Integration<a class="anchor-link" href="#Development-Plan:-User-Profile-Page-with-Social-Media-Integration">¶</a></h2><p><strong>Goal:</strong> Implement a user-friendly and secure profile page with social media integration.</p>
+<p><strong>Phase 1: Design &amp; Prototyping (1 week)</strong></p>
 <ul>
-<li><strong>Wireframing &amp; Mockups:</strong>  Create low-fidelity wireframes and high-fidelity mockups of the profile page, adhering to existing design guidelines.  Focus on intuitive navigation and clear visual hierarchy.  Include considerations for different screen sizes.</li>
-<li><strong>User Story Mapping:</strong> Define core user stories (e.g., "As a user, I can update my profile picture," "As a user, I can connect my Twitter account"). Prioritize stories based on value and complexity.</li>
-<li><strong>API Integration Plan:</strong> Outline the process for integrating with chosen social media platforms (Facebook, Twitter), specifying authentication methods (OAuth 2.0 preferred) and data handling.  Address data privacy concerns and compliance with relevant regulations (GDPR, CCPA).</li>
-<li><strong>Security Review:</strong>  Conduct a preliminary security review of the planned integration, focusing on data encryption and protection against vulnerabilities (OWASP Top 10).</li>
+<li><strong>Wireframing:</strong>  Create low-fidelity wireframes outlining page layout and functionality (profile picture, bio, activity feed, social media links).  Prioritize clear navigation and accessibility.  (Reference: App design guidelines)</li>
+<li><strong>UI Design:</strong>  Develop high-fidelity mockups based on wireframes, adhering to existing style guide.  Focus on intuitive user experience and visual consistency. (Reference: App style guide)</li>
+<li><strong>Prototype:</strong> Create an interactive prototype for user testing.</li>
 </ul>
 <p><strong>Phase 2: Development (2 weeks)</strong></p>
 <ul>
-<li><strong>Backend Development:</strong> Implement API endpoints for profile data management and social media integration.  Focus on robust error handling and data validation.</li>
-<li><strong>Frontend Development:</strong> Develop the UI based on approved mockups, ensuring responsiveness across devices. Implement secure authentication and data handling.</li>
-<li><strong>Testing (Unit &amp; Integration):</strong> Conduct thorough unit and integration testing of all functionalities.</li>
+<li><strong>Backend:</strong>  Develop API endpoints for profile data management (CRUD operations) and social media integration (OAuth 2.0 for secure authorization).  Implement robust error handling and data validation.</li>
+<li><strong>Frontend:</strong>  Develop the user interface based on approved designs. Implement secure data handling and storage, following security best practices (e.g., encryption, input sanitization).</li>
+<li><strong>Social Media Integration:</strong>  Implement OAuth 2.0 flows for Facebook, Twitter (and other planned platforms). Handle potential errors gracefully.</li>
+<li><strong>Unit &amp; Integration Testing:</strong>  Thorough testing of all components to ensure functionality and stability.</li>
 </ul>
 <p><strong>Phase 3: Testing &amp; Refinement (1 week)</strong></p>
 <ul>
-<li><strong>User Acceptance Testing (UAT):</strong> Conduct UAT with a representative sample of users to gather feedback on usability and identify any bugs.</li>
-<li><strong>Iteration &amp; Refinement:</strong> Based on UAT feedback, iterate on the design and functionality. Address any identified bugs and usability issues.</li>
-<li><strong>Performance Testing:</strong> Evaluate app performance with the new feature integrated.</li>
+<li><strong>Usability Testing:</strong> Conduct user testing on the prototype and final product to identify areas for improvement.  Gather feedback on UX and UI.</li>
+<li><strong>Security Testing:</strong> Perform security audits to identify and address potential vulnerabilities.</li>
+<li><strong>Bug Fixing:</strong> Address any identified bugs based on testing feedback.</li>
+<li><strong>Iterative Design:</strong> Refine the design and functionality based on testing results and stakeholder feedback.</li>
 </ul>
-<p><strong>Phase 4: Deployment &amp; Monitoring (1 week)</strong></p>
+<p><strong>Phase 4: Deployment (1 week)</strong></p>
 <ul>
-<li><strong>Deployment:</strong> Deploy the updated app to the app stores.</li>
-<li><strong>Monitoring:</strong> Monitor app performance and user feedback post-launch to identify and address any unforeseen issues.</li>
+<li><strong>Deployment to Staging:</strong> Deploy to staging environment for final testing and quality assurance.</li>
+<li><strong>Release to Production:</strong> Deploy to production environment after successful staging testing.</li>
+<li><strong>Monitoring:</strong> Monitor app performance and user feedback post-launch.</li>
 </ul>
-<p><strong>Success Criteria:</strong></p>
+<p><strong>Key Considerations:</strong></p>
 <ul>
-<li>User profile page meets design specifications and is user-friendly.</li>
-<li>Social media integration is secure and reliable.</li>
-<li>App performance remains stable after deployment.</li>
-<li>Positive user feedback is received.</li>
+<li><strong>Security:</strong>  Prioritize secure handling of user data and social media credentials.  Employ secure coding practices and regular security audits.</li>
+<li><strong>Privacy:</strong>  Ensure compliance with relevant privacy regulations (e.g., GDPR, CCPA).  Clearly communicate data usage practices to users.</li>
+<li><strong>Accessibility:</strong>  Design the profile page to be accessible to users with disabilities, adhering to accessibility guidelines (e.g., WCAG).</li>
 </ul>
-<p><strong>Iteration:</strong>  This plan will be reviewed and adjusted based on stakeholder feedback after each phase.  A key focus will be placed on balancing feature completeness with timely delivery.</p>
+<p><strong>Iteration Plan:</strong> Stakeholder feedback will be incorporated after each phase, potentially requiring adjustments to timelines and deliverables.  A post-launch review will inform future iterations and improvements.</p>
 </div>
 </div>
 </div>
@@ -7881,7 +7883,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rtf_prompt_everyday</span> <span class="o">=</span> <span class="s1">'''</span>
@@ -7909,7 +7911,7 @@ main {
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
 <h3 id="Gemini-Response:"><em>Gemini Response</em>:<a class="anchor-link" href="#Gemini-Response:">¶</a></h3><p>Subject: Apology for Delay in Scheduling Our Meeting</p>
 <p>Dear Neighbors,</p>
-<p>Please accept my sincerest apologies for the delay in scheduling our upcoming community meeting.  Unforeseen circumstances have impacted my availability, but I am now working diligently to finalize a date and time that works for the majority. I will be sending out a confirmation email with the meeting details by [Date]. Thank you for your understanding and patience.</p>
+<p>Please accept my sincerest apologies for the delay in scheduling our upcoming community meeting.  Unforeseen circumstances have caused a slight setback, but I am working diligently to finalize the date and time as soon as possible.  I will send out a confirmation email with all the details by [Date]. Thank you for your understanding and patience.</p>
 <p>Sincerely,</p>
 <p>Javi
 Community Organizer</p>
@@ -7955,7 +7957,7 @@ Community Organizer</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"# **Thank you and Happy Prompting!**"</span><span class="p">))</span>
@@ -7973,6 +7975,17 @@ Community Organizer</p>
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
 <h1 id="Thank-you-and-Happy-Prompting!"><strong>Thank you and Happy Prompting!</strong><a class="anchor-link" href="#Thank-you-and-Happy-Prompting!">¶</a></h1>
 </div>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3d56541f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Access-the-Code-and-Presentation"><strong>Access the Code and Presentation</strong><a class="anchor-link" href="#Access-the-Code-and-Presentation">¶</a></h2><p>You can find the notebook code and presentation documents in the <a href="https://github.com/JavaVista/prompt_frameworks">GitHub repository</a>.</p>
 </div>
 </div>
 </div>

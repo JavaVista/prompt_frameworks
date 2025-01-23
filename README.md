@@ -3,7 +3,7 @@
 A practical guide and demonstration of different prompt engineering frameworks using Google's Generative AI.
 
 ## Features
-- Implementation of CRISP prompting methodology
+- Implementation of prompting methodology
 - Interactive Jupyter notebook examples
 - Ready-to-use prompt templates
 - Real-world use cases and examples
@@ -23,7 +23,7 @@ cd prompt_frameworks
 2. Create and activate a virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate # On Windows, use `venv\Scripts\activate`
+source venv/bin/activate # on Windows, use `venv\Scripts\activate`
 ```
 3. Install the required packages:
 ```bash
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ```
 ## Configuration
 
-1. Get your Google API key for Generative AI from Google AI Studio.
+1. Get your Google API key for Generative AI from [Google AI Studio](https://aistudio.google.com/).
 
 2. Create a `.env` file in the root directory of the project.
 
@@ -42,7 +42,7 @@ GOOGLE_API_KEY=your_api_key_here
 ## Usage
 1. Run the Jupyter notebook:
 ```bash
-jupyter notebook
+jupyter notebook # or jupyter lab
 ```
 2. Open the `prompt_frameworks_presentation.ipynb` notebook and follow the instructions.
 
